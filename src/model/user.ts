@@ -1,19 +1,7 @@
+import {Schema,model} from 'mongoose';
+import {IUser} from "../interfaces/interfaces"
 
-import mongoose,{Document,Schema,model} from 'mongoose';
-interface IUser extends Document {
-    userName: string
-    firstName: string
-    middleName: string
-    lastName: string
-    email: string
-    password: string
-    role: "admin" | "student"
-    DOB:Date
-    DOR:Date
-    verfied:boolean
-}
-
-const userSchema = new Schema({
+const userSchema = new Schema<IUser>({
     userName:{
         type : String,
         required :true,
@@ -72,9 +60,9 @@ const userSchema = new Schema({
         default: false  
     } 
 },{
-    timestamps: true,  // Automatically creates `createdAt` and `updatedAt`
+    timestamps: true,  
     }
 )
 
-const userModel = mongoose.model<IUser>('User', userSchema);
+const userModel = model<IUser>('User', userSchema);
 export default userModel;
