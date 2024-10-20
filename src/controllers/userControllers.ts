@@ -18,7 +18,7 @@ export const createUser = async (req: Request<IUser>, res: Response)=>{
       }
     }catch(error){
             res.status(500).json({
-            unknownError: true
+                successfulRegistration: false
         })
     }
 }
@@ -34,7 +34,7 @@ export const getUsers = async (req:Request,res:Response)=>{
         })
       } catch (error) {
         res.status(500).json({
-            unknownError: true
+            successfullFetching: false
         })
       }
 }
@@ -56,7 +56,7 @@ export const getSingleUser = async (req:Request,res:Response)=>{
         }
     }catch (error){
         res.status(500).json({
-            unknowError : true
+            userFound : false
         })
     }
 }
@@ -79,7 +79,7 @@ export const deleteSingleUser = async (req:Request,res:Response) =>{
         }
     }catch(error){
         res.status(500).json({
-            unknownError: true
+            successfullDeletion: false
         })
     }
 }
@@ -106,7 +106,7 @@ export const updateUserByID = async (req:Request,res:Response)=>{
         }
     }catch(error){
         res.status(500).json({
-            unknownError: true
+            successfullUpdate: false
         })
     }
 }

@@ -26,6 +26,11 @@ const userSchema = new Schema<IUser>({
         trim: true,
         lowercase: true,
     },
+    gender: {
+        type: String,
+        required : true, 
+        enum : ["male","female"]
+    },
     email: {
         type: String,
         required: true,
@@ -35,7 +40,11 @@ const userSchema = new Schema<IUser>({
           /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
           'Please fill a valid email address',
         ],
-      },
+    },
+      tele: {
+        type:String,
+        required: true,
+    },
     password: {
         type:String,
         required: true,
