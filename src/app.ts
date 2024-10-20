@@ -5,20 +5,19 @@ import userRouter from "./routes/userRouter"
 dotenv.config()
 
 const app = express()
-const port = process.env.PORT || 5000 
-const mongoDbUrl:string = process.env.MONGODB_CONNECT_STRING as string;   
+const port = process.env.PORT || 3000 
+const mongoDbUrlUser = process.env.MONGODB_CONNECT_STRING_USER as string;  
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-mongoose.connect(mongoDbUrl).then(()=>{
-  console.log("mongodb connected successfully")
-  app.listen(port,()=>{
-  console.log("server running")
-  }) 
-} 
-).catch((error)=>{
-  console.log("Error while connecting to the database")
+mongoose.connect(mongoDbUrlUser).then(()=>{
+  console.log("users database connected")
+    app.listen(port,()=>{
+      console.log("server running")
+    })
+  }).catch((error)=>{
+  console.log("Error while connecting to users database")
   process.exit(1)
 })
 

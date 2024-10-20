@@ -31,6 +31,10 @@ const userSchema = new Schema<IUser>({
         required : true, 
         enum : ["male","female"]
     },
+    coursesEnrolled: {
+        type:[String],
+        default: null
+    },
     email: {
         type: String,
         required: true,
@@ -70,7 +74,7 @@ const userSchema = new Schema<IUser>({
     } 
 },{
     timestamps: true,  
-    }
+}
 )
 
 const userModel = model<IUser>('User', userSchema);

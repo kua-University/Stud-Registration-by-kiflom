@@ -6,13 +6,14 @@ import { IUser } from "../interfaces/interfaces";
 //creates a brand new user
 export const createUser = async (req: Request<IUser>, res: Response)=>{
     try{ 
-      const {userName,email,password} = req.body
+      const {userName,password} = req.body
       const usrexist = await userModel.findOne({userName})
     if(usrexist){
         res.status(400).json({userAlreadyExists:true})
     }else{
-        const hashedPassword = await bcrypt.hash(password,10)
-        const newUser = new userModel({...req.body,password: hashedPassword})
+        // const hashedPassword = await bcrypt.hash(password,10)
+        // const newUser = new userModel({...req.body,password: hashedPassword})
+        const newUser = new userModel(req.body)
         await newUser.save()
         res.status(201).json({successfulRegistration:true})
       }
@@ -88,9 +89,11 @@ export const deleteSingleUser = async (req:Request,res:Response) =>{
 export const updateUserByID = async (req:Request,res:Response)=>{
     try{
         const _id = req.params._id
-        console.log(req.body)
+        const {password} = req.body;
+        const hashedPassword = await bcrypt.hash(password,10)
         const updatedUser = await userModel.findByIdAndUpdate(
             _id,
+            // {...req.body,password:hashedPassword},
             req.body,
             { new: true, runValidators: true} 
           );

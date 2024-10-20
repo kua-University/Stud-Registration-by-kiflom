@@ -1,4 +1,4 @@
-import {Document} from "mongoose"
+import {Document,Schema} from "mongoose"
 export interface IUser extends Document{
     userName: string
     firstName: string
@@ -9,6 +9,7 @@ export interface IUser extends Document{
     tele: string
     password: string
     role: "admin" | "student"
+    coursesEnrolled?: string[]
     DOB:Date
     DOR?:Date
     verified?:boolean

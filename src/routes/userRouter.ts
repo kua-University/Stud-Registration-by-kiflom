@@ -10,7 +10,7 @@ const userRouter = Router()
 
 userRouter.get('/all',getUsers)
 userRouter.post('/register',createUser)
-userRouter.post('/:userName',getSingleUser)
+userRouter.get('/:userName',getSingleUser)
 userRouter.delete('/:userName',deleteSingleUser)
 userRouter.put('/:_id',updateUserByID)
 
